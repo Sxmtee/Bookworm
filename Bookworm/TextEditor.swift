@@ -5,14 +5,28 @@
 //  Created by mac on 12/10/2024.
 //
 
+//Accepting multi-line text input with TextEditor
+
 import SwiftUI
 
-struct TextEditor: View {
+struct NotesView: View {
+    @AppStorage("notes") private var notes = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            TextField("Enter your name", text: $notes, axis: .vertical)
+                .textFieldStyle(.roundedBorder)
+                .navigationTitle("Notes")
+                .padding()
+            
+            TextEditor(text: $notes)
+                .textFieldStyle(.roundedBorder)
+                .navigationTitle("Notes")
+                .padding()
+        }
     }
 }
 
 #Preview {
-    TextEditor()
+    NotesView()
 }
