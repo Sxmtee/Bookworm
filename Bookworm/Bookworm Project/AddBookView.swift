@@ -27,6 +27,17 @@ struct AddBookView: View {
         "Romance"
     ]
     
+    var hasValidAddress: Bool {
+        if title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            || author.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            || review.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        {
+            return false
+        }
+        
+        return true
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -61,6 +72,7 @@ struct AddBookView: View {
                         dismiss()
                     }
                 }
+                .disabled(hasValidAddress==false)
             }
             .navigationTitle("Add Book")
         }

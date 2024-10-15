@@ -19,6 +19,13 @@ struct DetailView: View {
         dismiss()
     }
     
+    func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+    
     var body: some View {
         ScrollView {
             ZStack(alignment: .bottomTrailing) {
@@ -37,6 +44,10 @@ struct DetailView: View {
             
             Text(book.author)
                 .font(.title)
+                .foregroundStyle(.secondary)
+            
+            Text(formatDate(book.date))
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
             
             Text(book.review)
